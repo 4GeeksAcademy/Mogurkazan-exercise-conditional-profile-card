@@ -24,6 +24,33 @@ import "../style/index.css";
  */
 function render(variables = {}) {
   console.log("These are the current variables: ", variables); // print on the console
+  // Set default values for missing properties
+  const defaultName = "Your name,";
+  const defaultLastName = "last name";
+  const defaultRole = "Your role";
+  const defaultCity = "Your city";
+  const defaultCountry = "Your country";
+  const defaultTwitter = "";
+  const defaultLinkedin = "";
+  const defaultInstagram = "";
+  const defaultGithub = "";
+
+  variables.name = variables.name == null ? defaultName : variables.name;
+  variables.lastName =
+    variables.lastName == null ? defaultLastName : variables.lastName;
+  variables.role = variables.role == null ? defaultRole : variables.role;
+  variables.city = variables.city == null ? defaultCity : variables.city;
+  variables.country =
+    variables.country == null ? defaultCountry : variables.country;
+  //DELETING NULL FROM SOCIAL MEDIA
+  variables.twitter =
+    variables.twitter == null ? defaultTwitter : variables.twitter;
+  variables.linkedin =
+    variables.linkedin == null ? defaultLinkedin : variables.linkedin;
+  variables.instagram =
+    variables.instagram == null ? defaultInstagram : variables.instagram;
+  variables.github =
+    variables.github == null ? defaultGithub : variables.github;
   // here we ask the logical questions to make decisions on how to build the html
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
@@ -33,14 +60,14 @@ function render(variables = {}) {
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/school/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <h1>${variables.name} ${variables.lastName}</h1>
+          <h2>${variables.role}</h2>
+          <h3>${variables.city}, ${variables.country}</h3>
+          <ul class="${variables.socialMediaPosition}">
+            <li><a href="https://twitter.com/${variables.twitter}"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${variables.github}"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/school/${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${variables.instagram}"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
